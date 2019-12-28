@@ -86,9 +86,33 @@ class Location {
     errorInfo = json['errorInfo'] as String;
     floor = json['floor'] as int;
     gpsAccuracyStatus = json['gpsAccuracyStatus'] as int;
-    isFixLastLocation = json['isFixLastLocation'] as bool;
-    isMock = json['isMock'] as bool;
-    isOffset = json['isOffset'] as bool;
+    var _isFixLastLocation = json['isFixLastLocation'];
+    if(_isFixLastLocation is bool) {
+      isFixLastLocation = _isFixLastLocation;
+    } else if(_isFixLastLocation is int) {
+      isFixLastLocation = _isFixLastLocation == 1 ? true : false;
+    } else {
+      isFixLastLocation = false;
+    }
+
+    var _isMock = json['isMock'];
+    if(_isMock is bool) {
+      isMock = _isMock;
+    } else if(_isMock is int) {
+      isMock = _isMock == 1 ? true : false;
+    } else {
+      isMock = false;
+    }
+
+    var _isOffset = json['isOffset'];
+    if(_isOffset is bool) {
+      isOffset = _isOffset;
+    } else if(_isOffset is int) {
+      isOffset = _isOffset == 1 ? true : false;
+    } else {
+      isOffset = false;
+    }
+
     latitude = json['latitude'] as num;
     locationDetail = json['locationDetail'] as String;
     locationQualityReport = json['locationQualityReport'] != null
@@ -316,7 +340,16 @@ class LocationQualityReport {
     adviseMessage = json['adviseMessage'] as String;
     gpsSatellites = json['gpsSatellites'] as int;
     gpsStatus = json['gpsStatus'] as int;
-    isWifiAble = json['isWifiAble'] as bool;
+
+    var _isWifiAble = json['isWifiAble'];
+    if(_isWifiAble is bool) {
+      isWifiAble = _isWifiAble;
+    } else if(_isWifiAble is int) {
+      isWifiAble = _isWifiAble == 1 ? true : false;
+    } else {
+      isWifiAble = false;
+    }
+
     netUseTime = json['netUseTime'] as int;
     networkType = json['networkType'] as String;
   }
